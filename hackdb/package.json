@@ -7,5 +7,14 @@
     "lint": "standard"
   },
   "author": "Fabio Rojas",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^7.2.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.8.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "DB"
+  ]
 }

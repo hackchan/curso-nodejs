@@ -27,8 +27,9 @@
 
    ese pequeño core de Nodejs se complemente con el userlan(NPM)
    Node Pakage Manager.
-###### Arquitectura NodeJS
 
+###### Arquitectura NodeJS
+``` 
  JS          NODEJS.JS CORE API
 ------------------------------------------
       |         NODE.JS BINDINGS         |
@@ -37,7 +38,7 @@ C/C++ | ---------------------------------|
       | JavaScript  LIBUV  ZLIB          |
       |   Engine           HTTP_PARSER   |
       ------------------------------------
-
+``` 
 Gracias a V8 podemos usar javascript fuera del navegador y hacer el binding con C/C++.
 
 La libreria LIBUV nos ayuda al manejo de event loop (Ejecucion de tareas asincronas), Operaciones de red y las operaciones de entrada y salida del sistema de archivo.
@@ -74,13 +75,19 @@ ON DEMAND|                                     |
                                           |ANY NODEJS APP| AGENTE
 
 ```
-###### Que se PUBSUB
+###### Que es PUBSUB
  
     PubSub es un patron de mensaeria:
-    En este modelo uno se escribre en un canal donde
-    se van a enviar mensajes por ejemplo un CHAT, yo solo voy a resivir informacion de los canales que este suscrito.
+    
+    * En este modelo uno se escribre en un canal donde
+      se van a enviar mensajes por ejemplo un CHAT, yo 
+      solo voy a resivir informacion de los canales que 
+      este suscrito.
 
-    Cualquier entidad que este conectada a la red y que publique un mensaje a ese canal la red podra redistribuirlo a todos los usuarios que esten suscritos a ese canal.
+    * Cualquier entidad que este conectada a la red y 
+      que publique un mensaje a ese canal la red  podra 
+      redistribuirlo a todos los usuarios que esten 
+      suscritos a ese canal.
 
     yo como usuario de la red me puedo suscribir en un canal y tambien puedo publicar a este.
 
@@ -88,8 +95,63 @@ ON DEMAND|                                     |
     MQTT que corre en el protocolo TCP/IP diseñado para conecciones limitadas bien sea por ancho de banda o tamaño del mensaje esto lo hace optimo para aplicaciones de IOT (internet de las cosas).
 
 ###### Que se WEBSOCKETS
-    Este es un protocolo full duplex esto quiere decir que el cliente y el servidor van a tener un canal de comunicacion bidireccional.
-    la conexion se realiza sobre un unico canal TCP entre el cliente y el servidor, para entablecer una comunicacion de websokect debe haber un handshake entre el cliente y el servidor este se hace a traves de htpp para hacer un upgrade http a websocket de esta forma puede haber intercambio de mensajes hasta que cualquiera de los dos lados decida cerrar el canal.
+
+    * Este es un protocolo full duplex esto quiere decir 
+      que el cliente y el servidor van a tener un  canal 
+      de comunicacion bidireccional.
+    
+    * la conexion se realiza sobre un unico canal TCP entre 
+      el cliente y el servidor
+    
+    * para entablecer una comunicacion 
+      de websokect debe haber un handshake entre el cliente y el 
+      servidor este se hace a traves de htpp para hacer un upgrade 
+      http a websocket de esta forma puede haber intercambio de 
+      mensajes hasta que cualquiera de los dos lados decida cerrar 
+      el canal.
+###### Que Puedo programar con NODEJS
+
+      * DesktopAPPS
+      * Mobile Devices (sporte nativo NodeJS con React Native)
+      * Web UI
+      * API Service / Serveless
+      * Embedded Devices
+###### Instalacion ORM
+       * sequelize (ORM)
+       * pg (Driver Postgrest)
+       * pg-hstore (requerida por sequelize)
+       
+       ```npm i sequelize pg pg-hstore --save```      
+###### Definicion de entidades de base de datos
+```
+      DROP TABLE Agent;
+      DROP TABLE Metric;
+
+      CREATE TABLE Agent (
+        id   int NOT NULL,
+        uiid int NOT NULL,
+        name     character varying NOT NULL,
+        username character varying NOT NUll,
+        pid  int NOT NULL,
+        connected boolean NOT NULL,
+        createAt  date NOT NULL,
+        updateAt  date NOT NULL,
+        CONSTRAINT Agent_id_PK PRIMARY KEY(id)
+    );
+
+
+     CREATE TABLE Metric (
+        id         int NOT NULL,
+        agentId    int NOT NULL,
+        type       character varying NOT NULL,
+        value      character varying NOT NUll,
+        createAt   date NOT NULL,
+        updateAt   date NOT NULL ,
+        CONSTRAINT Metric_id_PK PRIMARY KEY(id),
+        CONSTRAINT Metric_id_FK FOREIGN KEY(agentId) REFERENCES Agent(id)
+    );
+```
+
 # Imagenes       
 Las Imagenes se debe exportar al doble de resolucion a como las vamos a usar:
 ***Ejemplo***
@@ -113,6 +175,7 @@ cuando bloqueamos un usuario por intentar un maximo de intentos permitidos:
 ssh -o IdentitiesOnly=yes -i id_rsa root@ip
 
 # License
+
 ```
 Copyright 2017 FABIO ROJAS
 
@@ -121,8 +184,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
 
 ```
 

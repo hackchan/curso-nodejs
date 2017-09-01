@@ -6,6 +6,5 @@ module.exports = async function (config) {
 
   return {
     Agent,
-    Metric
-  }
+    Metric}
 }
