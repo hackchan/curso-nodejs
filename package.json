@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-curso",
+  "version": "0.1.0",
+  "description": "curso profesional de nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackchan/curso-nodejs.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Fabio Rojas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackchan/curso-nodejs/issues"
+  },
+  "homepage": "https://github.com/hackchan/curso-nodejs#readme"
+}
